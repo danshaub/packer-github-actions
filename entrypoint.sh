@@ -19,6 +19,12 @@ else
   OPERATION="packer ${INPUT_COMMAND} ${INPUT_ARGUMENTS}"
 fi
 
+# gather output file
+if [ -z "${INPUT_OUTPUT_FILE}" ]; then
+  OUTPUT_FILE=""
+else
+  OUTPUT_FILE="| tee ${INPUT_OUTPUT_FILE}"
+
 echo "::debug:: Executing command: ${OPERATION}"
 
 # cast INPUT_TARGET string to "array"
@@ -30,5 +36,5 @@ for TARGET in "${TARGETS[@]}"; do
   echo "::debug:: Processing target ${TARGET}"
 
   # shellcheck disable=SC2086
-  ${OPERATION} "${TARGET}"
+  ${OPERATION} "${TARGET}" "${OUTPUT_FILE}"
 done
