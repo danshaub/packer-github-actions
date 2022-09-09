@@ -16,7 +16,7 @@ fi
 if [ -z "${INPUT_ARGUMENTS}" ]; then
   OPERATION="packer ${INPUT_COMMAND}"
 else
-  OPERATION="packer ${INPUT_COMMAND} ${INPUT_ARGUMENTS}"s
+  OPERATION="packer ${INPUT_COMMAND} ${INPUT_ARGUMENTS}"
 fi
 
 echo "::debug:: Executing command: ${OPERATION}"
