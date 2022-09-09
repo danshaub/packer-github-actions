@@ -16,14 +16,8 @@ fi
 if [ -z "${INPUT_ARGUMENTS}" ]; then
   OPERATION="packer ${INPUT_COMMAND}"
 else
-  OPERATION="packer ${INPUT_COMMAND} ${INPUT_ARGUMENTS}"
+  OPERATION="packer ${INPUT_COMMAND} ${INPUT_ARGUMENTS}"s
 fi
-
-# gather output file
-if [ -z "${INPUT_OUTPUT_FILE}" ]; then
-  OUTPUT_FILE=""
-else
-  OUTPUT_FILE="| tee ${INPUT_OUTPUT_FILE}"
 
 echo "::debug:: Executing command: ${OPERATION}"
 
@@ -36,5 +30,9 @@ for TARGET in "${TARGETS[@]}"; do
   echo "::debug:: Processing target ${TARGET}"
 
   # shellcheck disable=SC2086
-  ${OPERATION} "${TARGET}" "${OUTPUT_FILE}"
+  if [ -z "${INPUT_OUTPUT_FILE}" ]; then
+    ${OPERATION} "${TARGET}"
+  else
+    ${OPERATION} "${TARGET}" | tee -a "${INPUT_OUTPUT_FILE}"
+  fi
 done

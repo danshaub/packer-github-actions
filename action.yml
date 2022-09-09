@@ -1,6 +1,6 @@
 ---
 
-name: Packer GitHub Actions DH_TEST
+name: Packer GitHub Actions DH_TEST 
 author: Kerim Satirli <kerim@operatehappy.com>
 description: Run Packer commands
 
