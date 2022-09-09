@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+set -o pipefail
 
 # fail if INPUT_COMMAND is not set
 if [ -z "${INPUT_COMMAND}" ]; then
